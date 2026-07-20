@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Formulario moderno de registro de pacientes para la Clínica San José.">
+  <title>Registro de Pacientes | Clínica San José</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand" aria-label="Clínica San José">
+      <div class="brand-mark" aria-hidden="true">+</div>
+      <div>
+        <p class="eyebrow">Clínica San José</p>
+        <h1>Registro de pacientes</h1>
+      </div>
+    </div>
+    <div class="header-meta">
+      <span class="status-dot" aria-hidden="true"></span>
+      Sistema disponible
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro-card" aria-labelledby="form-title">
+      <div>
+        <p class="eyebrow">Admisiones</p>
+        <h2 id="form-title">Nuevo ingreso</h2>
+        <p>Complete los datos solicitados. Los campos marcados con <strong>*</strong> son obligatorios.</p>
+      </div>
+      <div class="patient-id-box">
+        <span>ID del paciente</span>
+        <strong id="patientIdDisplay">PAC-0000</strong>
+      </div>
+    </section>
+
+    <section class="form-layout">
+      <aside class="progress-panel" aria-label="Progreso del formulario">
+        <p class="progress-label">Progreso</p>
+        <div class="progress-track" aria-hidden="true">
+          <span id="progressFill"></span>
+        </div>
+        <p class="progress-value"><span id="progressValue">25</span>% completado</p>
+
+        <ol class="steps-list">
+          <li class="step-item active" data-step-indicator="1">
+            <span class="step-number">1</span>
+            <div>
+              <strong>Datos personales</strong>
+              <small>Identificación y nacimiento</small>
+            </div>
+          </li>
+          <li class="step-item" data-step-indicator="2">
+            <span class="step-number">2</span>
+            <div>
+              <strong>Contacto</strong>
+              <small>Correo, teléfono y dirección</small>
+            </div>
+          </li>
+          <li class="step-item" data-step-indicator="3">
+            <span class="step-number">3</span>
+            <div>
+              <strong>Cobertura</strong>
+              <small>Seguro y representante</small>
+            </div>
+          </li>
+          <li class="step-item" data-step-indicator="4">
+            <span class="step-number">4</span>
+            <div>
+              <strong>Ingreso</strong>
+              <small>Motivo de consulta</small>
+            </div>
+          </li>
+        </ol>
+
+        <div class="draft-card">
+          <span class="draft-icon" aria-hidden="true">✓</span>
+          <div>
+            <strong>Borrador automático</strong>
+            <p>Los datos se conservan en este navegador.</p>
+          </div>
+        </div>
+      </aside>
+
+      <form id="patientForm" class="form-card" novalidate>
+        <div id="formAlert" class="form-alert" role="alert" aria-live="assertive" hidden></div>
+
+        <section class="form-step active" data-step="1" aria-labelledby="step1-title">
+          <div class="section-heading">
+            <span class="section-icon" aria-hidden="true">01</span>
+            <div>
+              <h3 id="step1-title">Datos personales</h3>
+              <p>Información básica para identificar al paciente.</p>
+            </div>
+          </div>
+
+          <div class="field-grid two-columns">
+            <div class="field-group full-width">
+              <label for="fullName">Nombre completo <span aria-hidden="true">*</span></label>
+              <input id="fullName" name="fullName" type="text" autocomplete="name" placeholder="Ej. María Fernanda López" required minlength="5">
+              <small class="field-hint">Escriba nombres y apellidos.</small>
+              <small class="field-error" id="fullNameError"></small>
+            </div>
+
+            <div class="field-group">
+              <label for="birthDate">Fecha de nacimiento <span aria-hidden="true">*</span></label>
+              <input id="birthDate" name="birthDate" type="date" autocomplete="bday" required>
+              <small class="field-error" id="birthDateError"></small>
+            </div>
+
+            <div class="field-group">
+              <label for="age">Edad calculada</label>
+              <div class="input-with-suffix">
+                <input id="age" name="age" type="number" readonly aria-readonly="true" placeholder="—">
+                <span>años</span>
+              </div>
+              <small class="field-hint">Se calcula automáticamente.</small>
+            </div>
+
+            <div class="field-group">
+              <label for="gender">Género <span aria-hidden="true">*</span></label>
+              <select id="gender" name="gender" required>
+                <option value="">Seleccione una opción</option>
+                <option value="femenino">Femenino</option>
+                <option value="masculino">Masculino</option>
+                <option value="otro">Otro</option>
+                <option value="prefiere-no-decir">Prefiere no decirlo</option>
+              </select>
+              <small class="field-error" id="genderError"></small>
+            </div>
+
+            <div class="field-group">
+              <label for="bloodType">Tipo de sangre <span aria-hidden="true">*</span></label>
+              <select id="bloodType" name="bloodType" required>
+                <option value="">Seleccione</option>
+                <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                <option value="desconocido">Desconocido</option>
+              </select>
+              <small class="field-error" id="bloodTypeError"></small>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="2" aria-labelledby="step2-title" hidden>
+          <div class="section-heading">
+            <span class="section-icon" aria-hidden="true">02</span>
+            <div>
+              <h3 id="step2-title">Información de contacto</h3>
+              <p>Datos necesarios para comunicación y seguimiento.</p>
+            </div>
+          </div>
+
+          <div class="field-grid two-columns">
+            <div class="field-group">
+              <label for="email">Correo electrónico <span aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="paciente@correo.com" required>
+              <small class="field-error" id="emailError"></small>
+            </div>
+
+            <div class="field-group">
+              <label for="phone">Teléfono <span aria-hidden="true">*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="numeric" maxlength="10" placeholder="0991234567" required pattern="[0-9]{10}">
+              <small class="field-hint">Ingrese 10 dígitos, sin espacios.</small>
+              <small class="field-error" id="phoneError"></small>
+            </div>
+
+            <div class="field-group full-width">
+              <label for="address">Dirección domiciliaria <span aria-hidden="true">*</span></label>
+              <input id="address" name="address" type="text" autocomplete="street-address" placeholder="Calle, número, sector y ciudad" required minlength="8">
+              <small class="field-error" id="addressError"></small>
+            </div>
+
+            <div class="field-group full-width">
+              <label for="country">País de origen <span aria-hidden="true">*</span></label>
+              <select id="country" name="country" autocomplete="country-name" required>
+                <option value="">Seleccione un país</option>
+                <option value="Ecuador" selected>Ecuador</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Perú">Perú</option>
+                <option value="Venezuela">Venezuela</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Chile">Chile</option>
+                <option value="México">México</option>
+                <option value="España">España</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <small class="field-error" id="countryError"></small>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="3" aria-labelledby="step3-title" hidden>
+          <div class="section-heading">
+            <span class="section-icon" aria-hidden="true">03</span>
+            <div>
+              <h3 id="step3-title">Cobertura y responsable</h3>
+              <p>Solo se mostrarán los campos que correspondan al paciente.</p>
+            </div>
+          </div>
+
+          <fieldset class="choice-card">
+            <legend>¿Tiene seguro médico? <span aria-hidden="true">*</span></legend>
+            <div class="choice-row">
+              <label class="radio-card">
+                <input type="radio" name="hasInsurance" value="yes" required>
+                <span>
+                  <strong>Sí, tiene seguro</strong>
+                  <small>Solicitar aseguradora y número de póliza.</small>
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="hasInsurance" value="no" required>
+                <span>
+                  <strong>No tiene seguro</strong>
+                  <small>No se solicitarán datos adicionales.</small>
+                </span>
+              </label>
+            </div>
+            <small class="field-error" id="hasInsuranceError"></small>
+          </fieldset>
+
+          <div id="insuranceFields" class="conditional-section" hidden>
+            <div class="conditional-heading">
+              <strong>Datos del seguro</strong>
+              <span>Requeridos por la selección anterior</span>
+            </div>
+            <div class="field-grid two-columns">
+              <div class="field-group">
+                <label for="insurer">Aseguradora <span aria-hidden="true">*</span></label>
+                <input id="insurer" name="insurer" type="text" placeholder="Ej. Salud S.A.">
+                <small class="field-error" id="insurerError"></small>
+              </div>
+              <div class="field-group">
+                <label for="policyNumber">Número de póliza <span aria-hidden="true">*</span></label>
+                <input id="policyNumber" name="policyNumber" type="text" placeholder="Ej. POL-458712">
+                <small class="field-error" id="policyNumberError"></small>
+              </div>
+            </div>
+          </div>
+
+          <div id="representativeFields" class="conditional-section" hidden>
+            <div class="conditional-heading">
+              <strong>Representante legal</strong>
+              <span>Obligatorio para pacientes menores de 18 años</span>
+            </div>
+            <div class="field-grid two-columns">
+              <div class="field-group">
+                <label for="representativeName">Nombre completo <span aria-hidden="true">*</span></label>
+                <input id="representativeName" name="representativeName" type="text" autocomplete="name" placeholder="Nombre del representante">
+                <small class="field-error" id="representativeNameError"></small>
+              </div>
+              <div class="field-group">
+                <label for="representativePhone">Teléfono <span aria-hidden="true">*</span></label>
+                <input id="representativePhone" name="representativePhone" type="tel" inputmode="numeric" maxlength="10" placeholder="0991234567" pattern="[0-9]{10}">
+                <small class="field-error" id="representativePhoneError"></small>
+              </div>
+            </div>
+          </div>
+
+          <div id="adultNotice" class="info-banner">
+            <span aria-hidden="true">i</span>
+            <p>La sección del representante legal aparecerá automáticamente si la edad calculada es menor de 18 años.</p>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="4" aria-labelledby="step4-title" hidden>
+          <div class="section-heading">
+            <span class="section-icon" aria-hidden="true">04</span>
+            <div>
+              <h3 id="step4-title">Datos del ingreso</h3>
+              <p>Motivo de consulta y registro automático de fecha y hora.</p>
+            </div>
+          </div>
+
+          <div class="field-grid two-columns">
+            <div class="field-group full-width">
+              <label for="symptoms">Síntomas principales o motivo de consulta <span aria-hidden="true">*</span></label>
+              <textarea id="symptoms" name="symptoms" rows="5" maxlength="500" placeholder="Describa brevemente el motivo de atención..." required minlength="10"></textarea>
+              <div class="field-meta">
+                <small class="field-error" id="symptomsError"></small>
+                <small><span id="symptomsCount">0</span>/500</small>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="entryDate">Fecha de ingreso</label>
+              <input id="entryDate" name="entryDate" type="date" readonly aria-readonly="true">
+              <small class="field-hint">Asignada automáticamente.</small>
+            </div>
+
+            <div class="field-group">
+              <label for="entryTime">Hora de ingreso</label>
+              <input id="entryTime" name="entryTime" type="time" readonly aria-readonly="true">
+              <small class="field-hint">Asignada automáticamente.</small>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div>
+              <span class="review-icon" aria-hidden="true">✓</span>
+              <div>
+                <strong>Listo para registrar</strong>
+                <p>Al guardar, el sistema validará todos los pasos sin borrar la información.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="form-actions">
+          <button type="button" id="resetButton" class="button button-ghost">Limpiar formulario</button>
+          <div class="primary-actions">
+            <button type="button" id="backButton" class="button button-secondary" hidden>Anterior</button>
+            <button type="button" id="nextButton" class="button button-primary">Continuar</button>
+            <button type="submit" id="submitButton" class="button button-primary" hidden>Registrar paciente</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <dialog id="confirmationDialog" class="modal">
+    <form method="dialog" class="modal-card">
+      <div class="modal-icon warning" aria-hidden="true">!</div>
+      <h2>¿Limpiar el formulario?</h2>
+      <p>Se eliminarán los datos guardados en este navegador.</p>
+      <div class="modal-actions">
+        <button value="cancel" class="button button-secondary">Cancelar</button>
+        <button value="confirm" class="button button-danger">Sí, limpiar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="successDialog" class="modal">
+    <div class="modal-card success-card">
+      <div class="modal-icon success" aria-hidden="true">✓</div>
+      <h2>Paciente registrado</h2>
+      <p>La información fue validada correctamente.</p>
+      <div id="successSummary" class="success-summary"></div>
+      <button id="newPatientButton" class="button button-primary">Registrar otro paciente</button>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
