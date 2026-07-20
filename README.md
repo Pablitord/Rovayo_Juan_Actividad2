@@ -113,7 +113,6 @@ El fondo claro, el texto oscuro y los controles con bordes definidos proporciona
 
 - **Tecnología utilizada:** HTML5, CSS3 y JavaScript.
 - **Tipo de propuesta:** Formulario web dinámico y responsive.
-- **Enlace al prototipo digital:** _Pegar aquí el enlace de GitHub Pages._
 - **Instrucciones:** Abrir el archivo `index.html` en un navegador o visitar el enlace publicado con GitHub Pages.
 
 ---
@@ -159,16 +158,6 @@ formulario_registro_pacientes/
 
 ---
 
-## Publicación en GitHub Pages
-
-1. Subir los archivos a la raíz de un repositorio público.
-2. Entrar en `Settings` → `Pages`.
-3. En `Source`, seleccionar `Deploy from a branch`.
-4. Seleccionar la rama `main` y la carpeta `/(root)`.
-5. Guardar y esperar a que GitHub genere el enlace público.
-6. Copiar el enlace en la sección “Enlace al prototipo digital” de este README.
-
----
 
 ## Conclusión
 
